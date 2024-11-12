@@ -107,6 +107,7 @@ class Board:
             a tuple of row, column index identifying the most constrained cell
         """
         pass
+        
 
     def failure_test(self) -> bool:
         """Check if we've failed to correctly fill out the puzzle. If we find a cell
@@ -139,8 +140,15 @@ class Board:
             column - index of the column to assign
             assignment - value to place at given row, column coordinate
         """
-        pass
+        self.rows[row][column] = assignment
+        for i in range(self.size):
+            #removes assignment from row
+            remove_if_exists(self.rows[row][i], assignment)
+            #removes assignment from column
+            remove_if_exists(self.rows[i][column], assignment)
 
+        for i, j in self.subgrid_coordinates(row, column):
+            remove_if_exists(self.rows[i][j], assignment)
 
 def DFS(state: Board) -> Board:
     """Performs a depth first search. Takes a Board and attempts to assign values to
@@ -175,6 +183,20 @@ def BFS(state: Board) -> Board:
 if __name__ == "__main__":
     # uncomment the below lines once you've implemented the board class
    
+    b = Board()
+    b.update(0,0,1)
+    b.update(0,2,2)
+    b.update(1,0,9)
+    b.update(1,1,8)
+    b.update(0,4,3)
+    b.update(1,3,2)
+    b.update(1,6,4)
+    b.update(1,8,3)
+    print(b)
+    b.print_pretty()
+
+
+
     # # CODE BELOW HERE RUNS YOUR BFS/DFS
     # print("<<<<<<<<<<<<<< Solving Sudoku >>>>>>>>>>>>>>")
 
@@ -325,4 +347,4 @@ if __name__ == "__main__":
     # print("<<<<<<<<<<<<<< Testing BFS on Second Game >>>>>>>>>>>>>>")
 
     # test_dfs_or_bfs(False, second_moves)
-    pass
+    
