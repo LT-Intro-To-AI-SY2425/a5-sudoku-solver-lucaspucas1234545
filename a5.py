@@ -106,8 +106,17 @@ class Board:
         Returns:
             a tuple of row, column index identifying the most constrained cell
         """
-        pass
-        
+        mini = 9
+        row = 0
+        col = 0
+        for i in range(self.size):
+            for j in range(self.size):
+                if isinstance(self.rows[i][j], list) and len(self.rows[i][j]) < mini:
+                    mini = len(self.rows[i][j])
+                    row = i
+                    col = j
+                    print(i, j, mini)
+        return tuple(row, col)
 
     def failure_test(self) -> bool:
         """Check if we've failed to correctly fill out the puzzle. If we find a cell
@@ -194,7 +203,7 @@ if __name__ == "__main__":
     b.update(1,8,3)
     print(b)
     b.print_pretty()
-
+    b.find_most_constrained_cell()
 
 
     # # CODE BELOW HERE RUNS YOUR BFS/DFS
