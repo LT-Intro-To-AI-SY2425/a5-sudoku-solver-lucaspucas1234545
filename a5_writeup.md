@@ -31,4 +31,4 @@ The choice of using Stack and Queue didn't really impact the implementation of t
 
 3. Considering the current implementation, how might the Sudoku solver be adapted or extended for larger puzzles or different types of grid-based logic games? How can the lessons learned from this assignment be applied to real-world problem-solving or optimization challenges?
 
-The sudoky solver might be able to be adapted to problems like 
+The sudoku solver might be able to be adapted so that it could play chess, checkers, go, and others. It would take some tweaking to incorporate strategy elements and the added complexity (maybe make some use of the tic tac toe ideas). We might be able to use what we learned in solving real world problem solving by taking advantage of the FILO or the FIFO to find the best solution.
