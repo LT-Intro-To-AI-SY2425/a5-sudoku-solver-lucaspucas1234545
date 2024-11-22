@@ -185,11 +185,13 @@ def DFS(state: Board) -> Board:
         either None in the case of invalid input or a solved board
     """
     s = Stack([state])
-    
+    num = 0
     while not s.is_empty():
         
         b: Board = s.pop()
+        num += 1
         if b.goal_test():
+            print(f"Number of iterations: {num}")
             return b
         mcc = b.find_most_constrained_cell()
         row = mcc[0]
